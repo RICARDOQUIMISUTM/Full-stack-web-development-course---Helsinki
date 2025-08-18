@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: El usuario escribe una nueva nota y pulsa "Save"
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa\npayload: {"content": "nueva nota", "date": "..."}
+    activate server
+    server-->>browser: {"message": "note created"} (JSON response)
+    deactivate server
+
+    Note right of browser: El JavaScript de la SPA <br>actualiza el estado local (lista de notas)
+
+    Note right of browser: Sin recargar la página, <br>la nueva nota aparece en la interfaz
